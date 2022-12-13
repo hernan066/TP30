@@ -1,4 +1,23 @@
+import { useEffect, useState } from "react";
+import { Movie } from "./Movie";
+import axios from "axios";
+
 export const TableMovies = () => {
+  const [movies, setMovies] = useState([]);
+
+  useEffect(() => {
+    const getGenres = async () => {
+      try {
+        const { data } = await axios.get("http://localhost:3001/api/movies");
+        console.log(data);
+        setMovies(data.data);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    getGenres();
+  }, []);
+
   return (
     <>
       <h1 className="h3 mb-2 text-gray-800">All the movies in the Database</h1>
@@ -31,20 +50,9 @@ export const TableMovies = () => {
                 </tr>
               </tfoot>
               <tbody>
-                <tr>
-                  <td>01</td>
-                  <td>Reto al destino</td>
-                  <td>20</td>
-                  <td>15</td>
-                  <td>120</td>
-                </tr>
-                <tr>
-                  <td>02</td>
-                  <td>La caída del halcón negro</td>
-                  <td>10</td>
-                  <td>18</td>
-                  <td>240</td>
-                </tr>
+                {movies.map((movie) => (
+                  <Movie movie={movie} key={movie.id} />
+                ))}
               </tbody>
             </table>
           </div>

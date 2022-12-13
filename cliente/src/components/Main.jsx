@@ -1,6 +1,6 @@
 import { data } from "../data/data";
 import { ContentRowMovies } from "./ContentRowMovies";
-import { Genres } from "./Genres";
+import { GenresInDb } from "./GenresInDb";
 import { LastMovies } from "./LastMovies";
 import { Navbar } from "./Navbar";
 import { TableMovies } from "./TableMovies";
@@ -22,11 +22,10 @@ export const Main = () => {
 
         <div className="row">
           <LastMovies />
-          <Genres />
+          <GenresInDb />
         </div>
         <TableMovies />
       </div>
-     
     </div>
   );
 };

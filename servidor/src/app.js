@@ -2,6 +2,7 @@ const express = require('express');
 const path = require('path');
 const methodOverride = require('method-override');
 const app = express();
+var cors = require('cors')
 
 
 //Ejecuto el llamado a mis rutas
@@ -28,6 +29,7 @@ app.use(express.urlencoded({ extended: false }));
 
 //Aquí estoy disponiendo la posibilidad para utilizar el seteo en los formularios para el usod e los metodos put ó delete
 app.use(methodOverride('_method'));
+app.use(cors());
 
 app.use('/', indexRouter);
 app.use(moviesRoutes);
